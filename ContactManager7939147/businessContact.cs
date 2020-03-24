@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ContactManager7939147
 {
-    class businessContact
+   public class businessContact : contact
     {
+        public string ContactBusinessTel { get; set; }
     }
 }
