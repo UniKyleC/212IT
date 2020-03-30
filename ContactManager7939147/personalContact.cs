@@ -8,6 +8,6 @@ namespace ContactManager7939147
 {
     public class personalContact : contact
     {
-        public string ContactHomeTel {get; set;}
+        public string conHTel {get; set;}
     }
 }

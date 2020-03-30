@@ -10,7 +10,7 @@ namespace ContactManager7939147
 {
     public class dbConn
     {
-        private string connString = "Server=db212it.cgvico87j64y.us-east-1.rds.amazonaws.com;User ID=admin;Password=212itc0ventry;Database=harriscontactdb;";
+        private string connString = "Server=db212it.cgvico87j64y.us-east-1.rds.amazonaws.com;UserID=admin;Password=212itc0ventry;Database=harriscontactdb;";
 
         public DataTable GetAllPersonal()
         {
@@ -25,17 +25,19 @@ namespace ContactManager7939147
                     {
                         personalContacts.Add(new personalContact
                         {
-                            ContactID = reader.GetInt32(0),
-                            ContactFName = reader.GetString(1),
-                            ContactLName = reader.GetString(2),
-                            ContactTel = reader.GetString(3),
-                            ContactEmail = reader.GetString(4),
-                            ContactAddr1 = reader.GetString(5),
-                            ContactAddr2 = reader.GetString(6),
-                            ContactCity = reader.GetString(7),
-                            ContactPostcode = reader.GetString(8),
-                            ContactHomeTel = reader.GetString(9)
+                            conID = reader.GetInt32(0),
+                            conFName = reader.GetString(1),
+                            conLName = reader.GetString(2),
+                            conTel = reader.GetString(3),
+                            conEmail = reader.GetString(4),
+                            conAddr1 = reader.GetString(5),
+                            conAddr2 = reader.GetString(6),
+                            conCity = reader.GetString(7),
+                            conPostcode = reader.GetString(8),
+                            conHTel = reader.GetString(9)
                         });
+                    }
+
                         personalContactDT.Columns.Add("Contact ID");
                         personalContactDT.Columns.Add("First Name");
                         personalContactDT.Columns.Add("Last Name");
@@ -47,21 +49,21 @@ namespace ContactManager7939147
                         personalContactDT.Columns.Add("Postcode");
                         personalContactDT.Columns.Add("Home Telephone");
 
-                    }
+                    
                 foreach (var item in personalContacts)
                 {
                     var row = personalContactDT.NewRow();
 
-                    row["Contact ID"] = item.ContactID;
-                    row["First Name"] = item.ContactFName;
-                    row["Last Name"] = item.ContactLName;
-                    row["Mobile Telephone"] = item.ContactTel;
-                    row["E-Mail Address"] = item.ContactEmail;
-                    row["Address (Line 1)"] = item.ContactAddr1;
-                    row["Address (Line 2)"] = item.ContactAddr2;
-                    row["City"] = item.ContactCity;
-                    row["Postcode"] = item.ContactPostcode;
-                    row["Home Telephone"] = item.ContactHomeTel;
+                    row["Contact ID"] = item.conID;
+                    row["First Name"] = item.conFName;
+                    row["Last Name"] = item.conLName;
+                    row["Mobile Telephone"] = item.conTel;
+                    row["E-Mail Address"] = item.conEmail;
+                    row["Address (Line 1)"] = item.conAddr1;
+                    row["Address (Line 2)"] = item.conAddr2;
+                    row["City"] = item.conCity;
+                    row["Postcode"] = item.conPostcode;
+                    row["Home Telephone"] = item.conHTel;
 
                     personalContactDT.Rows.Add(row);
                 }
@@ -79,15 +81,15 @@ namespace ContactManager7939147
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = "CALL insertPersonal(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9);";
-                    cmd.Parameters.AddWithValue("p1", personalContact.ContactFName);
-                    cmd.Parameters.AddWithValue("p2", personalContact.ContactLName);
-                    cmd.Parameters.AddWithValue("p3", personalContact.ContactTel);
-                    cmd.Parameters.AddWithValue("p4", personalContact.ContactEmail);
-                    cmd.Parameters.AddWithValue("p5", personalContact.ContactAddr1);
-                    cmd.Parameters.AddWithValue("p6", personalContact.ContactAddr2);
-                    cmd.Parameters.AddWithValue("p7", personalContact.ContactCity);
-                    cmd.Parameters.AddWithValue("p8", personalContact.ContactPostcode);
-                    cmd.Parameters.AddWithValue("p9", personalContact.ContactHomeTel);
+                    cmd.Parameters.AddWithValue("p1", personalContact.conFName);
+                    cmd.Parameters.AddWithValue("p2", personalContact.conLName);
+                    cmd.Parameters.AddWithValue("p3", personalContact.conTel);
+                    cmd.Parameters.AddWithValue("p4", personalContact.conEmail);
+                    cmd.Parameters.AddWithValue("p5", personalContact.conAddr1);
+                    cmd.Parameters.AddWithValue("p6", personalContact.conAddr2);
+                    cmd.Parameters.AddWithValue("p7", personalContact.conCity);
+                    cmd.Parameters.AddWithValue("p8", personalContact.conPostcode);
+                    cmd.Parameters.AddWithValue("p9", personalContact.conHTel);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -102,17 +104,17 @@ namespace ContactManager7939147
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "CALL updatePersonal((@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10);";
-                    cmd.Parameters.AddWithValue("p1", personalContact.ContactID);
-                    cmd.Parameters.AddWithValue("p2", personalContact.ContactFName);
-                    cmd.Parameters.AddWithValue("p3", personalContact.ContactLName);
-                    cmd.Parameters.AddWithValue("p4", personalContact.ContactTel);
-                    cmd.Parameters.AddWithValue("p5", personalContact.ContactEmail);
-                    cmd.Parameters.AddWithValue("p6", personalContact.ContactAddr1);
-                    cmd.Parameters.AddWithValue("p7", personalContact.ContactAddr2);
-                    cmd.Parameters.AddWithValue("p8", personalContact.ContactCity);
-                    cmd.Parameters.AddWithValue("p9", personalContact.ContactPostcode);
-                    cmd.Parameters.AddWithValue("p10", personalContact.ContactHomeTel);
+                    cmd.CommandText = "CALL updatePersonal(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10);";
+                    cmd.Parameters.AddWithValue("p1", personalContact.conID);
+                    cmd.Parameters.AddWithValue("p2", personalContact.conFName);
+                    cmd.Parameters.AddWithValue("p3", personalContact.conLName);
+                    cmd.Parameters.AddWithValue("p4", personalContact.conTel);
+                    cmd.Parameters.AddWithValue("p5", personalContact.conEmail);
+                    cmd.Parameters.AddWithValue("p6", personalContact.conAddr1);
+                    cmd.Parameters.AddWithValue("p7", personalContact.conAddr2);
+                    cmd.Parameters.AddWithValue("p8", personalContact.conCity);
+                    cmd.Parameters.AddWithValue("p9", personalContact.conPostcode);
+                    cmd.Parameters.AddWithValue("p10", personalContact.conHTel);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -146,17 +148,19 @@ namespace ContactManager7939147
                     {
                         businessContacts.Add(new businessContact
                         {
-                            ContactID = reader.GetInt32(0),
-                            ContactFName = reader.GetString(1),
-                            ContactLName = reader.GetString(2),
-                            ContactTel = reader.GetString(3),
-                            ContactEmail = reader.GetString(4),
-                            ContactAddr1 = reader.GetString(5),
-                            ContactAddr2 = reader.GetString(6),
-                            ContactCity = reader.GetString(7),
-                            ContactPostcode = reader.GetString(8),
-                            ContactBusinessTel = reader.GetString(9)
+                            conID = reader.GetInt32(0),
+                            conFName = reader.GetString(1),
+                            conLName = reader.GetString(2),
+                            conTel = reader.GetString(3),
+                            conEmail = reader.GetString(4),
+                            conAddr1 = reader.GetString(5),
+                            conAddr2 = reader.GetString(6),
+                            conCity = reader.GetString(7),
+                            conPostcode= reader.GetString(8),
+                            conBTel = reader.GetString(9)
                         });
+                    }
+
                         businessContactDT.Columns.Add("Contact ID");
                         businessContactDT.Columns.Add("First Name");
                         businessContactDT.Columns.Add("Last Name");
@@ -168,21 +172,20 @@ namespace ContactManager7939147
                         businessContactDT.Columns.Add("Postcode");
                         businessContactDT.Columns.Add("Home Telephone");
 
-                    }
                 foreach (var item in businessContacts)
                 {
                     var row = businessContactDT.NewRow();
 
-                    row["Contact ID"] = item.ContactID;
-                    row["First Name"] = item.ContactFName;
-                    row["Last Name"] = item.ContactLName;
-                    row["Mobile Telephone"] = item.ContactTel;
-                    row["E-Mail Address"] = item.ContactEmail;
-                    row["Address (Line 1)"] = item.ContactAddr1;
-                    row["Address (Line 2)"] = item.ContactAddr2;
-                    row["City"] = item.ContactCity;
-                    row["Postcode"] = item.ContactPostcode;
-                    row["Home Telephone"] = item.ContactBusinessTel;
+                    row["Contact ID"] = item.conID;
+                    row["First Name"] = item.conFName;
+                    row["Last Name"] = item.conLName;
+                    row["Mobile Telephone"] = item.conTel;
+                    row["E-Mail Address"] = item.conEmail;
+                    row["Address (Line 1)"] = item.conAddr1;
+                    row["Address (Line 2)"] = item.conAddr2;
+                    row["City"] = item.conCity;
+                    row["Postcode"] = item.conPostcode;
+                    row["Home Telephone"] = item.conBTel;
 
                     businessContactDT.Rows.Add(row);
                 }
@@ -201,15 +204,15 @@ namespace ContactManager7939147
                     cmd.Connection = conn;
 
                     cmd.CommandText = "CALL insertBusiness(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9);";
-                    cmd.Parameters.AddWithValue("p1", businessContact.ContactFName);
-                    cmd.Parameters.AddWithValue("p2", businessContact.ContactLName);
-                    cmd.Parameters.AddWithValue("p3", businessContact.ContactTel);
-                    cmd.Parameters.AddWithValue("p4", businessContact.ContactEmail);
-                    cmd.Parameters.AddWithValue("p5", businessContact.ContactAddr1);
-                    cmd.Parameters.AddWithValue("p6", businessContact.ContactAddr2);
-                    cmd.Parameters.AddWithValue("p7", businessContact.ContactCity);
-                    cmd.Parameters.AddWithValue("p8", businessContact.ContactPostcode);
-                    cmd.Parameters.AddWithValue("p9", businessContact.ContactBusinessTel);
+                    cmd.Parameters.AddWithValue("p1", businessContact.conFName);
+                    cmd.Parameters.AddWithValue("p2", businessContact.conLName);
+                    cmd.Parameters.AddWithValue("p3", businessContact.conTel);
+                    cmd.Parameters.AddWithValue("p4", businessContact.conEmail);
+                    cmd.Parameters.AddWithValue("p5", businessContact.conAddr1);
+                    cmd.Parameters.AddWithValue("p6", businessContact.conAddr2);
+                    cmd.Parameters.AddWithValue("p7", businessContact.conCity);
+                    cmd.Parameters.AddWithValue("p8", businessContact.conPostcode);
+                    cmd.Parameters.AddWithValue("p9", businessContact.conBTel);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -224,17 +227,17 @@ namespace ContactManager7939147
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "CALL updateBusiness((@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10);";
-                    cmd.Parameters.AddWithValue("p1", businessContact.ContactID);
-                    cmd.Parameters.AddWithValue("p2", businessContact.ContactFName);
-                    cmd.Parameters.AddWithValue("p3", businessContact.ContactLName);
-                    cmd.Parameters.AddWithValue("p4", businessContact.ContactTel);
-                    cmd.Parameters.AddWithValue("p5", businessContact.ContactEmail);
-                    cmd.Parameters.AddWithValue("p6", businessContact.ContactAddr1);
-                    cmd.Parameters.AddWithValue("p7", businessContact.ContactAddr2);
-                    cmd.Parameters.AddWithValue("p8", businessContact.ContactCity);
-                    cmd.Parameters.AddWithValue("p9", businessContact.ContactPostcode);
-                    cmd.Parameters.AddWithValue("p10", businessContact.ContactBusinessTel);
+                    cmd.CommandText = "CALL updateBusiness(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10);";
+                    cmd.Parameters.AddWithValue("p1", businessContact.conID);
+                    cmd.Parameters.AddWithValue("p2", businessContact.conFName);
+                    cmd.Parameters.AddWithValue("p3", businessContact.conLName);
+                    cmd.Parameters.AddWithValue("p4", businessContact.conTel);
+                    cmd.Parameters.AddWithValue("p5", businessContact.conEmail);
+                    cmd.Parameters.AddWithValue("p6", businessContact.conAddr1);
+                    cmd.Parameters.AddWithValue("p7", businessContact.conAddr2);
+                    cmd.Parameters.AddWithValue("p8", businessContact.conCity);
+                    cmd.Parameters.AddWithValue("p9", businessContact.conPostcode);
+                    cmd.Parameters.AddWithValue("p10", businessContact.conBTel);
                     cmd.ExecuteNonQuery();
                 }
             }

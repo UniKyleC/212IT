@@ -67,6 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="businessContact.cs" />
+    <Compile Include="BusinessContactsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusinessContactsForm.Designer.cs">
+      <DependentUpon>BusinessContactsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="contact.cs" />
     <Compile Include="contactForm.cs">
       <SubType>Form</SubType>
@@ -76,10 +82,22 @@
     </Compile>
     <Compile Include="dbConn.cs" />
     <Compile Include="personalContact.cs" />
+    <Compile Include="PersonalContactsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalContactsForm.Designer.cs">
+      <DependentUpon>PersonalContactsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BusinessContactsForm.resx">
+      <DependentUpon>BusinessContactsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="contactForm.resx">
       <DependentUpon>contactForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalContactsForm.resx">
+      <DependentUpon>PersonalContactsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

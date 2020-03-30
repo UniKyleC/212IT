@@ -21,5 +21,17 @@ namespace ContactManager7939147
         {
 
         }
+
+        private void buttonPC_Click(object sender, EventArgs e)
+        {
+            PersonalContactsForm personal = new PersonalContactsForm();
+            personal.Show();
+        }
+
+        private void buttonBC_Click(object sender, EventArgs e)
+        {
+            BusinessContactsForm business = new BusinessContactsForm();
+            business.Show();
+        }
     }
 }
