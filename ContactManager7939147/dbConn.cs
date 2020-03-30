@@ -170,7 +170,7 @@ namespace ContactManager7939147
                         businessContactDT.Columns.Add("Address (Line 2)");
                         businessContactDT.Columns.Add("City");
                         businessContactDT.Columns.Add("Postcode");
-                        businessContactDT.Columns.Add("Home Telephone");
+                        businessContactDT.Columns.Add("Business Telephone");
 
                 foreach (var item in businessContacts)
                 {
@@ -185,7 +185,7 @@ namespace ContactManager7939147
                     row["Address (Line 2)"] = item.conAddr2;
                     row["City"] = item.conCity;
                     row["Postcode"] = item.conPostcode;
-                    row["Home Telephone"] = item.conBTel;
+                    row["Business Telephone"] = item.conBTel;
 
                     businessContactDT.Rows.Add(row);
                 }
