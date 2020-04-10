@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ContactManager7939147
 {
+    //set the abstract class contact, so it can be inherited
     public abstract class contact
     {
+        //set all the values
         public int conID { get; set; }
         public string conFName { get; set; }
         public string conLName { get; set; }
